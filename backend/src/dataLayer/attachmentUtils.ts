@@ -2,8 +2,6 @@ import * as AWS from 'aws-sdk'
 import * as AWSXRay from 'aws-xray-sdk'
 import { createLogger } from '../utils/logger'
 
-// TODO: Implement the fileStogare logic
-
 const XAWS = AWSXRay.captureAWS(AWS)
 
 const s3BucketName = process.env.ATTACHMENT_S3_BUCKET;
@@ -18,7 +16,7 @@ export class AttachmentUtils {
   ) {}
 
   getSignedUrl(todoId: string): string {
-    logger.info(`getSignedUrl`);
+    logger.info(`attachmentUtils - getSignedUrl!!!`);
     return this.s3.getSignedUrl('putObject', {
       Bucket: this.bucketName,
       Key: todoId,
@@ -27,7 +25,7 @@ export class AttachmentUtils {
   }
 
   generateS3AttachmentUrl(todoId: string) {
-    logger.info(`generateS3AttachmentUrl`);
+    logger.info(`attachmentUtils - generateS3AttachmentUrl!!!`);
     return `https://${this.bucketName}.s3.amazonaws.com/${todoId}`;
   }
 }

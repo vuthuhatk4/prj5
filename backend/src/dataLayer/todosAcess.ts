@@ -18,7 +18,7 @@ export class TodosAccess {
   ) { }
 
   async getTodosByUserId(userId: string): Promise<TodoItem[]> {
-    logger.info(`getTodosForUser`);
+    logger.info(`todoAccess - getTodosForUser!!!`);
 
     const result = await this.docClient
       .query({
@@ -32,13 +32,13 @@ export class TodosAccess {
       .promise();
 
     const items = result.Items;
-    logger.info(`items: ${items}`);
+    logger.info(`todoAccess - getTodosForUser - items: ${items}`);
 
     return items as TodoItem[];
   }
 
   async createNewTodo(todoItem: TodoItem): Promise<TodoItem> {
-    logger.info(`createNewTodo`);
+    logger.info(`todoAccess - createNewTodo!!!`);
 
     await this.docClient
       .put({
@@ -55,7 +55,7 @@ export class TodosAccess {
     todoId: string,
     updatedTodo: TodoUpdate
   ): Promise<TodoItem> {
-    logger.info(`updateTodo`);
+    logger.info(`todoAccess - updateTodo!!!`);
 
     let params = {
       TableName: this.todosTable,
@@ -76,7 +76,7 @@ export class TodosAccess {
       },
       ReturnValues: 'ALL_NEW'
     };
-    logger.info(`params: ${params}`);
+    logger.info(`todoAccess - updateTodo - params: ${params}`);
 
     const result = await this.docClient.update(params).promise();
     const item = result.Attributes;
@@ -85,7 +85,7 @@ export class TodosAccess {
   }
 
   async deleteTodo(userId: string, todoId: string): Promise<TodoItem> {
-    logger.info(`deleteTodo`);
+    logger.info(`todoAccess - deleteTodo!!!`);
 
     let params = {
       TableName: this.todosTable,
@@ -94,7 +94,7 @@ export class TodosAccess {
         todoId
       }
     };
-    logger.info(`params: ${params}`);
+    logger.info(`todoAccess - deleteTodo - params: ${params}`);
 
     const result = await this.docClient.delete(params).promise();
     const item = result.Attributes;
@@ -107,7 +107,7 @@ export class TodosAccess {
     todoId: string,
     attachmentUrl: string
   ): Promise<TodoItem> {
-    logger.info(`updateTodoAttachmentUrl`);
+    logger.info(`todoAccess - updateTodoAttachmentUrl!!!`);
 
     const params = {
       TableName: this.todosTable,
@@ -124,7 +124,7 @@ export class TodosAccess {
       },
       ReturnValues: 'ALL_NEW'
     };
-    logger.info(`params: ${params}`);
+    logger.info(`todoAccess - updateTodoAttachmentUrl - params: ${params}`);
 
     const result = await this.docClient.update(params).promise();
     const item = result.Attributes;

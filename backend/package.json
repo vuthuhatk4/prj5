@@ -27,7 +27,7 @@
     "@types/aws-lambda": "^8.10.122",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^10.17.60",
-    "aws-sdk": "^2.1466.0",
+    "aws-sdk": "^2.1467.0",
     "serverless-aws-documentation": "^1.1.0",
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-plugin-canary-deployments": "^0.8.0",
